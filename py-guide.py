@@ -13,12 +13,12 @@
 #   4. Numbers
 #   5. Strings
 #   6. Boolean Values
-#   7. Operators
-#
+#   7. Operators   
+#   8. Lists
 #
 #
 # ┌────────────────────────────────────────────────────────────
-# │     1. Variables
+# │	1. Variables
 # └────────────────────────────────────────────────────────────
 
 # var without defined type, you can modify the type later
@@ -256,7 +256,7 @@ x = 'hello world'
 print(x.upper()) # to uppercase
 print(x.lower()) # to lowercase
 print(x.strip()) # remove start or end whitespaces (not in the middle)
-print(x.replace('he', 'hi he')) # replace: returns "hi hello world"
+print(x.replace('he', 'hi he')) # replace: returns "hi hello world" 
 print(x.split(' ')) # split: returns ['hello', 'world']
 
 
@@ -338,7 +338,7 @@ else:
 print(bool('hello'))
 print(bool(92))
 
-# NOTE:
+# NOTE: 
 #   1. Any string is true, except empty string
 #   2. Any number is true, except 0
 
@@ -454,15 +454,230 @@ print('banana' in x) # true
 # 7.7 Bitwise operators
 '''
 Operator    Name    Desc
-&           AND     Sets each bit to 1 if both bits are 1
+&           AND     Sets each bit to 1 if both bits are 1 
 |           OR      Sets each bit to 1 if one of two bits is 1
 ^           XOR     Sets each bit to 1 if only one of two bits is 1
 ~           NOT     Inverts all the bits
 
 <<          Zero fill left shift    Shift left by pushing zeros in from the right and let the leftmost bits fall off
->>          Signed right shift      Shift right by pushing copies of the leftmost bit in from the left, and let the right
-most bits fall off
+>>          Signed right shift      Shift right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off
 '''
+
+
+
+# ┌────────────────────────────────────────────────────────────
+# │        8. Lists
+# └────────────────────────────────────────────────────────────
+
+# Python collections (arrays)
+# There are 4 collection data types:
+#
+#   name            ordered     changeable  allows_duplicate
+#   1. List         yes         yes         yes
+#   2. Tuple        yes         no          yes
+#   3. Set          no          unindexed   no
+#   4. Dictionary   no          no          no
+#
+
+# First, lets see Lists:
+
+mylist = ['banana', 'apple', 'cherry']
+
+# List items are orederedm changeable and allow duplicate values
+# List items are indexed: list[0], list[1], ...
+
+# we can determine list length with
+print(len(mylist))
+
+
+# lists allow any data types
+list1 = ["apple", "banana", "cherry"]
+list2 = [1, 5, 7, 9, 3]
+list3 = [True, False, False]
+list4 = ['abc', 34, True]
+
+
+# from python's perspective, lists are defined as objects with data type 'list'
+print(type(list1)) # <class 'list'>
+
+
+# another way to create lists is the list() constructor
+list5 = list((1, 2, 3))
+print(list5) # [1, 2, 3]
+
+
+# 8.1 Access Items
+mylist = ['hi', 'hello', 'world']
+print(mylist[1]) # hello
+
+# negative indexing: starts from the end
+# -1 = last item
+# -2 = second last item
+print(mylist[-1]) # world
+
+# range of indexes
+mylist = ["apple", "banana", "cherry", "orange", "kiwi", "melon", "mango"]
+print(mylist[2:5])
+# prints 3º item to 5º
+# the list[5] is NOT included
+
+print(mylist[:5]) # range from beginning to [5] NOT included
+print(mylist[5:]) # range from [5] to the end
+
+# negative range
+print(mylist[-4:-1]) # range from [-4] to [-1] NOT included
+
+# check if item exist in a list
+if 'apple' in mylist:
+    print('yeah, its on the list!')
+
+
+# 8.2 Change list items
+mylist = [1, 1, 3, 4]
+mylist[1] = 2
+print(mylist) # [1, 2, 3, 4]
+
+# modify ranges
+mylist = ["apple", "banana", "cherry", "orange", "kiwi", "mango"]
+mylist[1:3] = ["blackcurrant", "watermelon"] # modify 'banana' and 'cherry'
+print(mylist) 
+
+# you can also insert ranges in just 1 item (adding 1 to the list length) or insert 1 item into a rang (making the length -1 than the original)
+mylist = [1, 2, 3, 4]
+mylist[3:] = [4, 5] # replace the 4 with 4,5 -> [1,2,3,4,5]
+print(mylist)
+
+mylist[1:3] = [0, 0] # [1, 0, 0, 4, 5]
+print(mylist)
+
+# another way to insert items is insert() method
+mylist = [1, 2, 4, 5]
+mylist.insert(2, 3) #insert in list[2] the value '3' -> [1, 2, 3, 4, 5]
+# note that other list items has been moved 1 position
+
+# Append items: append()
+mylist = ['hi', 'hello']
+mylist.append('world')
+print(mylist) # ['hi', 'hello', 'world']
+
+# Extend list: extend()
+list1 = [1, 2]
+list2 = [3, 4]
+list1.extend(list2)
+print(list1) # [1, 2, 3, 4]
+
+# Remove a element: remove()
+list1 = [1, 2, 3, 4]
+list1.remove(3)
+print(list1) # [1, 2, 4]
+
+# Remove a index: pop()
+list1 = [1, 2, 3, 4]
+list1.pop(0)
+print(list1) # [2, 3, 4]
+
+# if pop does not recieve any index, deletes the last item
+list1.pop()
+print(list1) # [2, 3]
+
+# Remove a index with 'del'
+del list1[0] # removes the item index
+print(list1) # [3]
+
+# Clear the list: clear()
+list1.clear()
+print(list1) # []
+
+
+# Loops on list items
+arr = ['uno', 'dos', 'tres']
+for x in arr:
+    print(x) # x values: uno, dos, tres
+
+# Loop on list indexes
+for x in range(len(arr)):
+    print(arr[x]) # x values: 0, 1, 2
+
+# Loop with while
+i = 0 # counter
+while i < len(arr):
+    print(arr[i])
+    i = i + 1
+
+# Shorthand loop to print all items in a list
+[print(x) for x in arr]
+
+
+
+# List Comprehesion
+# for example, create a new list with the items containing letter 'a'
+fruits = ['apple', 'banana', 'cherry', 'kiwi', 'mango']
+a_fruits = []
+
+for x in fruits:
+    if 'a' in x:
+        a_fruits.append(x)
+
+print(a_fruits) # ['apple', 'banana', 'mango']
+
+# using list comprehesion, we can write all that code in just 1 line
+new_a_fruits = [x for x in fruits if 'a' in x]
+print(new_a_fruits)
+# SYNTAX: newlist = [expression for item in iterable if condition == True]]
+
+# you can iterate with range()
+arr = [x for x in range(10)] # [0, 1, 2, ..., 8, 9]
+
+# only numbers lower than 5
+arr = [x for x in range(10) if x < 5] # [0, 1, 2, 3, 4]
+
+# the 'expression' is the outcome, so you can manipulate it
+arr = [x.upper() for x in fruits] # ['APPLE', 'BANANA', ...]
+
+# example: replace all the values with 'hello'
+arr = ['hello' for x in fruits] # ['hello', 'hello', ...]
+
+# example: return orange instead of banana
+arr = [x if x != 'banana' else 'orange' for x in fruits]
+
+
+# Sort lists - sort()
+# that method will sort the list alphanumerically ascending
+arr = [6, 3, 7, 1]
+arr.sort()
+print(arr) # [1, 3, 6, 7]
+
+# descending
+arr.sort(reverse = True)
+print(arr) # [7, 6, 3, 1]
+
+
+# customize Sort function
+# you can customize the sort with: sort(key = function)
+def myfunc(n):
+    return abs(n - 50)
+
+arr = [100, 50, 65, 82, 23]
+arr.sort(key = myfunc)
+# this will order the numbers by how close they are from number 50
+
+
+# By default sort() is case sensitive, so capital letteres go before lower ones
+# to sort ignoring them:
+arr = ['banana', 'Orange', 'Kiwi', 'cherry']
+arr.sort(key = str.lower)
+
+# reverse
+arr.reverse()
+
+
+# Copy Lists
+# You cannot copy a list with {list2 = list1} because list2 will be a reference to list1, so every change to list1 will apply to list2
+# So, to make a copy of the list, need to use copy() method
+new_arr = arr.copy()
+
+# another way to copy a list is list()
+new_arr = list(arr)
 
 
 
