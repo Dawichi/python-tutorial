@@ -680,4 +680,63 @@ new_arr = arr.copy()
 new_arr = list(arr)
 
 
+# Join Lists
+# there are several ways to join or concatenate tow or more lists. the easiest is with +
+list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+list3 = list1 + list2 # [1, 2, 3, 4, 5, 6]
+
+# another way: appending each element one by one
+for x in list2:
+    list1.append(x)
+
+# another way: extend() one array with another
+list1.extend(list2)
+
+
+# All list methods
+'''
+append()    Adds an element at the end of the list
+clear()     Removes all the elements from the list
+copy()      Returns a copy of the list
+count()     Returns the number of elements with the specified value
+extend()    Add the elements of a list (or any iterable), to the end of the current list
+index()     Returns the index of the first element with the specified value
+insert()    Adds an element at the specified position
+pop()       Removes the element at the specified position
+remove()    Removes the item with the specified value
+reverse()   Reverses the order of the list
+sort()      Sorts the list
+'''
+
+
+
+# ┌────────────────────────────────────────────────────────────
+# │        9. Tuples
+# └────────────────────────────────────────────────────────────
+# tuples are like lists but: unchangeable and ordered.
+# think on list-tuple like variable-constant
+# a tuple will be used for example with an array the de want to make explicit that it mustn't be changed
+# create a tuple:
+tuple1 = (1, 2, 3)
+tuple2 = ('banana', 'apple', 'cherry')
+tuple3 = (True, False, True)
+tuple4 = (1, 'apple', False)
+
+# tuples with only 1 element: it must have a , after the item
+tuple1 = ('apple',) # this is a tuple
+tuple2 = ('apple') # this is not a tuple
+
+# constructor tuple()
+tuple1 = tuple(('banana', 'apple')) # note (()) double brackets
+
+# Access tuples
+print(tuple1[1])
+
+# as lists, negative index: -1 to last item, -2 to second last item...
+
+# as lists, range of index
+
+# 
+
 
